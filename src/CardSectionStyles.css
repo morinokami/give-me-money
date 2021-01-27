@@ -1,7 +1,6 @@
 .StripeElement {
-  height: 40px;
+  margin: 10px 0;
   padding: 10px 12px;
-  width: 100%;
   color: #32325d;
   background-color: white;
   border: 1px solid transparent;

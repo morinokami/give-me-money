@@ -10,9 +10,15 @@ const stripePromise = loadStripe('pk_test_51IDte5Bv64yFsKT9pnhoJow9WOVeXvCLVrqxn
 
 function App() {
   return (
-    <Elements stripe={stripePromise}>
-      <CheckoutForm />
-    </Elements>
+    <div style={{ padding: 26, maxWidth: 760, margin: 'auto' }}>
+      <h1>Give me 💸</h1>
+      <div>
+        <Elements stripe={stripePromise}>
+          <CheckoutForm />
+        </Elements>
+      </div>
+      <p>TEST CARD: 4242424242424242</p>
+    </div>
   );
 };
 

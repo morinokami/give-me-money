@@ -1,7 +1,7 @@
 import React from 'react';
 import { useStripe, useElements, CardElement } from '@stripe/react-stripe-js';
-
 import CardSection from './CardSection';
+import './CheckoutFormStyles.css';
 
 export default function CheckoutForm() {
   const stripe = useStripe();
@@ -20,7 +20,7 @@ export default function CheckoutForm() {
 
     const response = await fetch('/.netlify/functions/secret', {
       method: 'POST',
-      body: JSON.stringify({ amount: 888 }), // TODO
+      body: JSON.stringify({ amount: 100 }),
       headers: { 'Content-Type': 'application/json' }
     })
     const data = await response.json()
@@ -37,7 +37,7 @@ export default function CheckoutForm() {
 
     if (result.error) {
       // Show error to your customer (e.g., insufficient funds)
-      console.log(result.error.message);
+      alert(result.error.message);
     } else {
       // The payment has been processed!
       if (result.paymentIntent?.status === 'succeeded') {
@@ -46,7 +46,7 @@ export default function CheckoutForm() {
         // execution. Set up a webhook or plugin to listen for the
         // payment_intent.succeeded event that handles any business critical
         // post-payment actions.
-        console.log('succeeded')
+        alert('You paid me 100 Yen! Thanks!')
       }
     }
   };
@@ -54,7 +54,7 @@ export default function CheckoutForm() {
   return (
     <form onSubmit={handleSubmit}>
       <CardSection />
-      <button disabled={!stripe}>Confirm order</button>
+      <button disabled={!stripe}>Pay now!</button>
     </form>
   );
 }
