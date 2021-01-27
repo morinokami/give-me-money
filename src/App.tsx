@@ -18,6 +18,7 @@ function App() {
         </Elements>
       </div>
       <p>TEST CARD: 4242424242424242</p>
+      <p><a href="https://github.com/morinokami/give-me-money">GitHub</a></p>
     </div>
   );
 };
