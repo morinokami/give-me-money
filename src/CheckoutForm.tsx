@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useStripe, useElements, CardElement } from '@stripe/react-stripe-js';
 import CardSection from './CardSection';
 import './CheckoutFormStyles.css';
@@ -6,11 +6,13 @@ import './CheckoutFormStyles.css';
 export default function CheckoutForm() {
   const stripe = useStripe();
   const elements = useElements();
+  const [paying, setPaying] = useState(false);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     // We don't want to let default form submission happen here,
     // which would refresh the page.
     event.preventDefault();
+    setPaying(true);
 
     if (!stripe || !elements) {
       // Stripe.js has not yet loaded.
@@ -49,12 +51,13 @@ export default function CheckoutForm() {
         alert('You paid me 100 Yen! Thanks!')
       }
     }
+    setPaying(false);
   };
 
   return (
     <form onSubmit={handleSubmit}>
       <CardSection />
-      <button disabled={!stripe}>Pay now!</button>
+      <button disabled={!stripe || paying}>Pay now!</button>
     </form>
   );
 }
