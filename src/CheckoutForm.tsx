@@ -48,7 +48,7 @@ export default function CheckoutForm() {
         // execution. Set up a webhook or plugin to listen for the
         // payment_intent.succeeded event that handles any business critical
         // post-payment actions.
-        alert('You paid me 100 Yen! Thanks!')
+        alert('You paid me 100 JPY! Thanks!')
       }
     }
     setPaying(false);
